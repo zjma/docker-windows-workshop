@@ -30,18 +30,20 @@ services:
     networks:
       - app-net
 
-  proxy:
-    image: dwwx/reverse-proxy
-    command: --docker --docker.endpoint=npipe:////./pipe/docker_engine --docker.watch --api
+  traefik:
+    image: stefanscherer/traefik-windows
+    command: --docker.endpoint=npipe:////./pipe/docker_engine --logLevel=DEBUG
     ports:
       - "8020:80"
       - "8080:8080"
+    isolation: process # workaround for https://github.com/containous/traefik/issues/4409
     volumes:
+      - .:C:/etc/traefik
       - type: npipe
         source: \\.\pipe\docker_engine
-        target: \\.\pipe\docker_engine      
+        target: \\.\pipe\docker_engine
     networks:
-      - app-net
+        - app-net
 
 networks:
   app-net:

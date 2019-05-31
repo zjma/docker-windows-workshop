@@ -10,6 +10,9 @@ COPY src\SignUp.Model\SignUp.Model.csproj .\SignUp.Model\
 COPY src\SignUp.Model\packages.config .\SignUp.Model\
 COPY src\SignUp.MessageHandlers.SaveProspect\SignUp.MessageHandlers.SaveProspect.csproj .\SignUp.MessageHandlers.SaveProspect\
 COPY src\SignUp.MessageHandlers.SaveProspect\packages.config .\SignUp.MessageHandlers.SaveProspect\
+RUN dotnet restore SignUp.Core\SignUp.Core.csproj
+RUN dotnet restore SignUp.Entities\SignUp.Entities.csproj
+RUN dotnet restore SignUp.Messaging\SignUp.Messaging.csproj
 RUN nuget restore .\SignUp.sln
 
 COPY src C:\src

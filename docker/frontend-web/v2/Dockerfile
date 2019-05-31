@@ -10,6 +10,9 @@ COPY src\SignUp.Model\SignUp.Model.csproj .\SignUp.Model\
 COPY src\SignUp.Web\SignUp.Web.csproj .\SignUp.Web\
 COPY src\SignUp.Model\packages.config .\SignUp.Model\
 COPY src\SignUp.Web\packages.config .\SignUp.Web\
+RUN dotnet restore SignUp.Core\SignUp.Core.csproj
+RUN dotnet restore SignUp.Entities\SignUp.Entities.csproj
+RUN dotnet restore SignUp.Messaging\SignUp.Messaging.csproj
 RUN nuget restore SignUp.sln
 
 COPY src C:\src
